@@ -1,0 +1,29 @@
+｛
+    title: '头像',
+    key: 'avatar',
+    columns: {
+        'width': '50px'
+    },
+    render: (h, params) => {
+        return h('div'), [
+            h('img', {
+                attrs: {    //绑定Button时使用props，参考iView官网table模块   
+                    src: params.row.avatar
+                },
+                style: {
+                    width: '40px',
+                    height: '40px'
+                },
+                on: {
+                    click: () => {
+                        //这里写出发点击时间的函数
+                    }
+                }
+            });
+        ]
+    }
+｝
+
+attrs：属性绑定
+style：样式绑定
+on：事件绑定

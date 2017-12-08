@@ -1,0 +1,121 @@
+
+mounted理解：
+    1.什么是钩子函数
+        钩子函数是Windows消息处理机制的一部分，通过设置钩子，应用程序可以在系统级对所有消息、事件进行过滤，访问在正常情况下无法访问的消息。钩子的本质是一段用以处理系统消息的程序，通过系统调用把他挂入系统。（百度百科）
+
+    2.相对于前端来讲
+        对于前端来说，钩子函数就是指在所有函数执行前，我先执行了的函数，即钩住我感兴趣的函数，只要它执行我就先执行；
+
+    3.vue中的mounted
+        el被新创建的vm.$el替换，并挂载到实例上去之后调用该钩子。如果root实例挂载了一个文档内元素，当mounted被调用时，vm.el也在文档内
+        注意mounted不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用vm.$nextTick替换掉mounted：
+        mounted: function(){
+            this.$nextTick(function(){
+                //some code
+            })
+        }
+        该钩子在服务器渲染期间不会被调用
+    
+    问题：el不是创建实例时所挂载的目标吗？为什么还会被新创建的替换，如果替换是不是就是一个新的生命周期，但是在写demo中好像也没法新新创建了实例啊
+
+父组件调用子组件方法：
+    ref/vm.$refs/vm.$emit
+        ref：用来给元素或子组件注册引用信息。引用信息将会注册到父组件的$refs对象上；
+        vm.$refs：一个对象，持有已注册过ref的所有子组件；
+        vm.$emit：触发当前实例上的事件；
+        vm.$on：监听当前实例上的自定义事件，事件可以由vm.$emit触发；
+        exp:
+            vm.$on('test', function(msg){
+                console.log(msg);
+            })
+            vm.$emit('test', 'hih')
+        
+        如何使用呢？
+            1.使用ref为组件注册一个引用信息
+            2.使用$refs获取该组件对象，并使用$emit触发该组件的自定义事件
+            触发自定义事件的前提是需要在子组件使用mounted钩子，并使用$on监听当前实例上的自定义事件。
+            exp:
+                父:
+                    为组件使用ref注册引用信息  ref='test'
+                    this.$refs.test.$emit('myMethod', '123') 获取组件对象并触发myMethod方法，并传参（可以传多个参数）
+                子：
+                    使用mounted钩子，监听当前实例上的事件
+                    this.$on('myMethod', (val) => {
+                        console.log(val);
+                    });
+
+渲染函数：
+    vue在绝大多数情况下使用template来创建HTML，但是在一些场景中，需要javascript的完全编程能力，这里就会用到render函数，他比template更接近原生；
+    function(createElement){
+        return createElement('div', '123');
+    }
+    这样就返回了一个HTML；
+    createElement中的参数：
+        createElement(
+            //{string|Object|Function}
+            //一个HTML标签字符串，组件选项对象，或者一个返回值类型为String/Object的函数，这个是必要参数
+            'div'，
+            //｛Object｝一个包含模版相关属性的数据对象
+            //一个包含模版相关属性的数据对象
+            //这样就可以在template中使用这些参数。可选参数;
+            ｛
+                //和'v-bind:class'一样的api
+                'class':{
+
+                },
+                //the same as 'v-bind:style'
+                style{
+
+                },
+                //正常的HTML特性
+                attrs:{
+
+                },
+                //组件的props
+                props:{
+
+                },
+                //DOM属性
+                domProp:{
+                    innerHTML:'baz'
+                },
+                //事件监听基于'on'
+                //所以不在支持如'v-on:keyup.enter'修饰器
+                //需要手动匹配keycode
+                on:{
+                    click: this.clickHandler   //这里有些iview定义的事件可能需要添加''（将事件名称放置在引号内）
+                },
+                //仅对于组件，用于监听原生事件，而不是组件内部使用'vm$emit'触发的事件
+                nativeOn:{
+                    click:this.nativeClickHandler
+                },
+                // 自定义指令。注意事项：不能对绑定的旧值设值
+                // Vue 会为您持续追踪
+                directives: [
+                    {
+                        name: 'my-custom-directive',
+                        value: '2',
+                        expression: '1 + 1',
+                        arg: 'foo',
+                        modifiers: {
+                            bar: true
+                        }
+                    }
+                ]
+                //这里还有更多选项可以使用，请参考vue官网给出的教程
+
+            ｝，
+            //｛String|Array｝
+            //子节点（VNodes）,由'createElement()'构建而成，
+            //或者用字符串来生成"文本结点"。可选参数
+            [
+                '先写一些文字',
+                createElement('h','some word'),
+                createElement(MyComponent, {
+                    props:{
+                        //some props
+                    }               
+                })
+            ]
+        ) 
+

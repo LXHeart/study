@@ -1,0 +1,13 @@
+
+概念介绍：
+    #render 
+    . 类型：(createElement: () => VNode) => VNode 
+    . 详细：
+        字符串模版的代替方案，允许你发挥JavaScript最大的编程能力，该渲染函数接收一个 createElement 方法作为第一个参数用来创建 VNode
+        如果组件是一个函数组件，渲染函数还会接收一个额外的 context 参数，为没有实例的函数组件提供上下文信息。
+
+        *Vue选项中的render函数若存在，则Vue构造函数不会从 template 选项或通过 el 选项指定的挂载元素中提取出的HTML模版编译渲染函数
+
+
+
+    

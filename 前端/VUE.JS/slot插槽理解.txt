@@ -1,0 +1,20 @@
+slot插槽：
+    作用：动态修改组件中的非公共部分；
+    分类：插槽分为三类：单个插槽，具名插槽和作用域插槽
+
+    单个插槽：当子组件模版只有一个没有属性的插槽时，父组件传入的整个内容片段将插入到插槽所在的DOM位置，并替换掉插槽本身；
+    具名插槽：可以通过name来进一步配置如何分发内容。多个插槽可以有不同的名字；多个中仍然可以有匿名插槽；
+    作用域插槽：一个可以传递数据的可重用模版，来代替已经渲染好了的元素；
+    exp：
+    <div class='child'>
+        <slot text='hello from child'></slot>
+    </div>
+
+    <div class='parent'>
+        <child>
+            <template slot-scope='props'>
+                <span>hello from parent</span>
+                <span>{{props.text }}</span>   <!-- 子组件中的text内容将会传递到这个span中 -->
+            </template>
+        </child>
+    </div>

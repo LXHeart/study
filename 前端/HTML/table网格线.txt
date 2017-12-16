@@ -1,0 +1,11 @@
+table表格网格线
+
+.table{
+    border: 1px solid black;
+    width: 100%;
+    border-collapse:collapse;  //为表格设置合并边框模型；collapse：如果有可能，边框会合并为一个单一的边框；
+}
+
+.td{
+    border:1px solod black;
+}

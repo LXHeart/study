@@ -1,0 +1,20 @@
+一、MVC
+    MVC模式的意思是，软件可以分成三个部分：视图（view）用户界面；控制器（controller）业务逻辑；模型（model）数据保存；
+    逻辑顺序：
+        1.view传送指令到controller；
+        2.controller完成业务逻辑，要求model改变状态；
+        3.model将新的数据发送到View，用户得到反馈；
+
+    MVC可以分成两种方式：一种是通过view接收命令，传递给controller，另一种是直接通过controller接收命令；
+
+二、MVP
+    MVP模式将Controller改名为presenter，同时改变了通信模式；
+    特点：
+        1.各部分之间的通信都是双向的；
+        2.view与model不发生联系；
+        3.view非常薄，不部署任何业务逻辑，称为“被动视图（Passive View）”，即没有任何主动性，而Presenter非常厚，所有逻辑都部署在那里；
+
+三、MVVM
+    MVVM模式将Presenter改名为ViewModel，基本上与MVP模式完全一致；
+    唯一的区别是，他采用双向绑定View变动，自动反应在ViewModel，反之亦然；
+

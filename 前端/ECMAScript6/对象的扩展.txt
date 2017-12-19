@@ -1,0 +1,52 @@
+一、属性的简洁表示法
+    1.ES6允许直接写入变量和函数，作为对象的属性和方法；
+        允许在对象中直接写变量：const baz={foo:foo}
+        方法也可以简写：method（）｛return hello｝
+二、属性名表达式
+    obj.foo = true 与 obj['a' + 'bc'] = 123 均为属性赋值，而后者使用的是表达式的方式；
+    使用字面量定义对象（使用大括号），es5只能使用前一种，es6可以时候后一种
+    属性名表达式与简洁表示法不能同时使用；
+
+三、方法的name属性：返回函数名
+
+四、Object.is()
+    同值相等算法；Object.is('foo', 'foo');//true
+    感觉这个方法就相当于java中的equals方法；
+
+五、Object.assign()
+    用于对象的合并，将源对象的所有可枚举属性，复制到目标对象。
+    example:Object.assign(target, source1, source2) //将source1与source2中的可枚举属性复制到target对象中；
+    注意点：
+        1.浅拷贝：如果源对象某个属性的值是对象，那么目标对象拷贝得到的是这个对象的引用。
+        2.同名属性的替换：若源对象某个属性与目标对象某个属性同名，则目标对象中的该属性会被源对象中的该属性替换。
+        3.数组的处理：Object.assign([1, 2, 3], [4, 5]) //[4, 5, 3] ps:会把相同索引处的值替换~
+        4.取值函数的处理：源对象中的属性值为一个方法时，会先求值后复制；
+    常见用途：
+        1.为对象添加属性；
+        2.为对象添加方法；
+        3.克隆对象；
+        4.合并多个对象；
+        5.为属性指定默认值；
+
+六、属性的可枚举性和遍历
+    可枚举性
+        可枚举性：对象的属性分为可枚举和不可枚举，它是由属性的enumerable值决定的，true为可枚举，false为不可枚举；JS中定义的原形属性一般是不可枚举的，而自己定义的属性一般可枚举；可以通过propertyEnumerable方法判断该属性是否可枚举；
+        
+        对象的每个属性都有一个描述对象（Descriptor），用来控制该属性的行为。
+        Object.getOwnPropertyDescriptor方法可以获取该属性的描述对象。
+        描述对象的enumerable属性，称为可枚举性，如果该属性为false就表示某些操作会忽略当前属性：
+        -for...in循环:只遍历对象自身和继承的可枚举的属性
+        -Object.keys：返回对象自身的所有可枚举的属性的键名
+        -JSON.stringify：只串行化对象自身的可枚举的属性（方法解释：将一个JavaScript值（对象或者数组）转换为一个json字符串）
+        -Object.assign：忽略enumerable为false的属性；
+    属性的遍历：
+        1.for...in
+        2.Object.keys(obj)
+        3.Object.getOwnPropertyNames(obj)
+        4.Object.getOwnPropertySymbols(obj)
+        5.Reflect.ownKeys(obj)
+
+未完待续~（ps：后面的实在看着头疼了！）
+
+
+

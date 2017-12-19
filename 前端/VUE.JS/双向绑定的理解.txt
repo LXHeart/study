@@ -1,0 +1,43 @@
+为什么会想写一下什么是双向绑定呢？
+    其实最简单的理解就是view绑定了model，model又绑定的view；
+    view绑定model：view中展示了model中的数据；
+    model绑定view：当view中的数据发生改变的同时model也随之改变；
+
+这里了解一下MVVM可能会好一点，view的变动会反应在viewModel中，反之亦然；
+额，这里理解可能有问题；我理解的双向绑定是view与model之间的苟且，但是看了一篇文章对MVVM的介绍后说view是和viewModel之间的苟且。。。。。
+
+现在说一下为什么要写这个双向绑定：
+    我在iview中使用table组件时，定义column时使用了render来渲染数据，然而render中并没有v-model这个指令，也没有v-bind指令，这时对于双向绑定就是一脸懵逼；
+    v-bind：动态的绑定一个或多个特性；也就是说绑定了一个属性后，这个属性的值可以从data中获取；这个属性的值被绑定在了data中；
+    v-model:就是一个语法糖实现了v-bind:value="something" v-on:input="something = $event.target.value"
+
+    demo:
+        render: (h, params) => {
+            let self = this
+            return h('div', [
+                domProps{
+                    value: this.something
+                },
+                on:{
+                    input: function(event){
+                        self.$emit('input', event.target.value)
+                    }
+                }
+            ]);
+        }
+
+        data(){
+            return{
+                something
+            }
+        }
+
+        mounted:{
+            this.$on('input', function(val){
+                this.something = val;
+            });
+        }
+
+
+ps：今天写的时候又对双向绑定有了一些认识，书写双向绑定并非需要按照上述demo进行编写；当前的值是来自对应的model，然而当前值改变后又给model中对应的值修改为当前的值,这东西越想就会越简单；
+    

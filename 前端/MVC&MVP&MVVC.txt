@@ -7,6 +7,8 @@
 
     MVC可以分成两种方式：一种是通过view接收命令，传递给controller，另一种是直接通过controller接收命令；
 
+    
+
 二、MVP
     MVP模式将Controller改名为presenter，同时改变了通信模式；
     特点：

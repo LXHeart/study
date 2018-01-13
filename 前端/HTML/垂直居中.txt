@@ -1,0 +1,19 @@
+1.不知道自己高度和父容器高度的情况下，利用绝对定位只需一下三行
+    parentElement{
+        position: relative;
+    }
+    childElement{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+2.如果父容器下只有一个元素，且父元素设置了高度，则只需要使用相对定位
+    parentElement{
+        height: XXX;
+    }
+    childElement {
+        position: relative;
+        top: 50%;
+        transform: translateY(50%);
+    }

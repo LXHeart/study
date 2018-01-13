@@ -1,0 +1,27 @@
+// index.html
+<body>
+    <div id='app'></div>
+    <!-- built files will be auto injectde -->
+</body>
+
+// APP.vue
+<template>
+    <div id='app'>
+        <router-view></router-view>
+    </div>
+</template>
+
+// main.js
+new Vue({
+    el:'#app',
+    router,
+    template:'<APP/>',
+    components:{
+        App
+    }
+});
+
+* index.html中的<div id='app'></div>是指定绑定元素根路径的
+* App.vue的<div id='app'></div>则是用于具体注入绑定元素的内容
+* 由于Vue组件必须有个根元素，所以APP.vue里面，根元素<div id='app'></div>与外层被注入框架index.html中的<div id='app'></div>是一致的
+* index.html中的#app指定绑定目标，而vue文件里的#app提供填充内容，两者在运行时指向同一个DOM元素；

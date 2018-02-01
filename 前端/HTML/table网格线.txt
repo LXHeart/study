@@ -7,5 +7,5 @@ table表格网格线
 }
 
 .td{
-    border:1px solod black;
+    border:1px solid black;
 }

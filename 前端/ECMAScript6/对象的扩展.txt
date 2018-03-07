@@ -46,7 +46,13 @@
         4.Object.getOwnPropertySymbols(obj)
         5.Reflect.ownKeys(obj)
 
-未完待续~（ps：后面的实在看着头疼了！）
+七、Object.getOwnPropertyDescriptors()
+    Object.getOwnPropertyDescriptor方法会返回某个对象属性的描述对象（descriptor）。
+    ES2017引入了Object.getOwnPropertyDescriptors方法，返回指定对象所有自身属性（非继承属性）的描述对象；
+    该方法的引入主要是为了解决Object.assign()，无法正确拷贝get属性和set属性的问题；
+    配合Object.create方法将对象属性克隆到一个新对象。这属于浅拷贝；
+    可以实现一个对象继承另一个对象；
+
 
 
 

@@ -1,0 +1,113 @@
+supplierId:'',              //供应商id
+enterpriseName:'',          //供应商名称
+area:'',                    //供应商所属地区
+nameAndMobile:'',           //联系人与电话
+productId:'',               //产品id用于向子组件传递
+modelPrice:false,           //操作->团期价格对话框状态
+modelDel:false,             //操作->删除对话框状态
+dataTotal:200,              //分页->数据总数
+currentpage:1,              //分页->当前页码
+pageSize:10,                //分页->每页持有的数据量
+
+
+
+
+[
+    {
+        "startCity": "西安市",
+        "priceType": "头等舱",
+        "trafficType": "101",
+        "flightType": "101",
+        "flightTypeName": "直飞",
+        "trafficName": "飞机",
+        "classesNo": "K001",
+        "stateName": "已审核",
+        "returnCity": "北京市",
+        "trafficTypeName": "飞机",
+        "id": 1,
+        "state": "102",
+        "prices": [
+            {
+                "rownum": 2,
+                "mpriceAdult": 10000,
+                "pricetypeId": 1,
+                "groupDay": "2017-12-22",
+                "trafficId": 1,
+                "id": 2
+            },
+            {
+                "rownum": 3,
+                "mpriceAdult": 10000,
+                "pricetypeId": 1,
+                "groupDay": "2017-12-23",
+                "trafficId": 1,
+                "id": 3
+            },
+            {
+                "rownum": 4,
+                "mpriceAdult": 10000,
+                "pricetypeId": 1,
+                "groupDay": "2017-12-24",
+                "trafficId": 1,
+                "id": 4
+            }
+        ]
+    },
+    {
+        "startCity": "西安市",
+        "priceType": "普通舱",
+        "trafficType": "101",
+        "flightType": "101",
+        "flightTypeName": "直飞",
+        "trafficName": "飞机",
+        "classesNo": "K001",
+        "stateName": "已审核",
+        "returnCity": "北京市",
+        "trafficTypeName": "飞机",
+        "id": 2,
+        "state": "102",
+        "prices": [
+            {
+                "rownum": 3,
+                "mpriceAdult": 8000,
+                "pricetypeId": 2,
+                "groupDay": "2017-12-22",
+                "trafficId": 1,
+                "id": 7
+            }
+        ]
+    }
+]
+
+
+
+现有数据，后有dom  
+
+
+
+
+
+
+
+<Dropdown>
+    <Button type="text">
+        <Icon type="navicon-round"></Icon>
+    </Button>
+    <DropdownMenu slot="list">
+        <DropdownItem>添加成员</DropdownItem>
+        <DropdownItem>添加子部门</DropdownItem>
+    </DropdownMenu>
+</Dropdown>
+
+[
+    {
+        id:'',
+        realName: '',
+        sex: '',
+        position: '',
+        mail: '',
+        account: '',
+        department: '',
+        state: ''
+    }
+]

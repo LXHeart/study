@@ -1,0 +1,8 @@
+declare
+    num   number;
+begin
+    select count(1) into num from user_tables where table_name = upper('tableNam') ;
+    if num > 0 then
+        execute immediate 'drop table tableName' ;
+    end if;
+end;

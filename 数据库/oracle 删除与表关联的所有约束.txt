@@ -1,0 +1,8 @@
+删除与表关联的所有约束：
+select c.TABLE_NAME
+   from all_constraints p, all_constraints c
+  where p.table_name =upper( '表名称')
+    and p.OWNER = SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA')
+    and c.OWNER=SYS_CONTEXT('USERENV', 'CURRENT_SCHEMA')
+    and c.constraint_type = 'R'
+    and p.CONSTRAINT_NAME = c.R_CONSTRAINT_NAME 

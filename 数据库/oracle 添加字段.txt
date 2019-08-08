@@ -1,0 +1,3 @@
+alter table BOSS_T_FB_COLINFO add orderrule varchar2(4);
+comment on column BOSS_T_FB_COLINFO.orderrule
+  is '排序方式';

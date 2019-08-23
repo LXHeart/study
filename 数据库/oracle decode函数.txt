@@ -1,0 +1,7 @@
+语法
+decode(条件，值1，返回值1，值2，返回值2，...值n,返回值n，缺省值) 
+
+DECODE(value, if1, then1, if2,then2, if3,then3, . . . else )
+
+decode(X，A，B，C，D，E）
+这个函数运行的结果是，当X = A，函数返回B；当X != A 且 X = C，函数返回D；当X != A 且 X != C，函数返回E。 其中，X、A、B、C、D、E都可以是表达式，这个函数使得某些sql语句简单了许多。

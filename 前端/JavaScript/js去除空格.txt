@@ -1,0 +1,14 @@
+1、replace正则匹配方法
+    去除字符串内所有的空格：str = str.replace(/\s*/g,"");
+    去除字符串内两头的空格：str = str.replace(/^\s*|\s*$/g,"");
+    去除字符串内左侧的空格：str = str.replace(/^\s*/,"");
+    去除字符串内右侧的空格：str = str.replace(/(\s*$)/g,"");
+
+2、str.trim()方法
+    str.trim();
+    str.trimLeft();
+    str.trimRight();
+
+3、JQ方法：$.trim(str)方法
+    str_1 = $.trim(str);
+

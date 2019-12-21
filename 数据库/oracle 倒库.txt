@@ -11,19 +11,26 @@ size 10000m
 autoextend on next 50m;
 
 -- 2.基于表空间，新建用户，并给用户赋予权限
-create user nmzxy0911 identified by 1 default tablespace EFMIS3;
+create user dj2_20191026 identified by 1 default tablespace EFMIS3;
 
 create or replace  directory MY_HPTDATA AS 'D:\app\oracledmp';
-GRANT CREATE ANY DIRECTORY TO nmzxy0911;
-grant read, write on directory MY_HPTDATA to nmzxy0911;
-grant dba to  nmzxy0911;
-grant connect to  nmzxy0911;
-grant resource to  nmzxy0911;
+GRANT CREATE ANY DIRECTORY TO dj2_20191026;
+grant read, write on directory MY_HPTDATA to dj2_20191026;
+grant dba to  dj2_20191026;
+grant connect to  dj2_20191026;
+grant resource to  dj2_20191026;
 
 -- 3.导入dmp文件
 impdp nm0911_Z1/1@orcl directory=MY_HPTDATA  dumpfile=HLBESZHYS_2020_0910_bf_new.dmp FULL=y; 
 
-imp nmzxy0911@orcl file = D:\app\oracledmp\wdqzhys.dmp log = D:\app\oracledmp\hnq910.log full = y;
+imp dj1_20191026@orcl file = D:\app\oracledmp\YS1024.DMP log = D:\app\oracledmp\ys1024.log full = y;
+
+impdp dj2_20191026/1@orcl file=D:\app\oracledmp\DJGSC1901024.DMP log = D:\app\oracledmp\djgsc191024.log full=y ignore=y;  
+impdp dj2_20191026/1@orcl file=D:\app\oracledmp\YS1027.DMP log = D:\app\oracledmp\ys1027.log full=y ignore=y;  
+
+drop user DJYS2019TEST cascade;
+
+
 
 工具 -> 导入表 -> 导入可执行文件 -> 导入DMP文件
 
@@ -31,3 +38,30 @@ imp nmzxy0911@orcl file = D:\app\oracledmp\wdqzhys.dmp log = D:\app\oracledmp\hn
 
 
 impdp  n1/1@orcl DIRECTORY=MY_HPTDATA dumpfile=HLBESZHYS_2020_0910_bf_new.dmp REMAP_SCHEMA=HLBESZHYS_2020:n1,transform=oid:n logfile=HLBESZHYS_2020_08236688_new.log
+
+
+
+
+删除USER。
+
+DROP USER XX CASCADE
+
+删除表空间。
+
+DROP TABLESPACE tablespace_name INCLUDING CONTENTS AND DATAFILES;
+
+删除空的表空间，不包含物理文件。
+
+DROP TABLESPACE tablespace_name;
+
+删除空表空间，包含物理文件。
+
+DROP TABLESPACE tablespace_name INCLUDING DATAFILES;
+
+删除非空表空间，不包含物理文件。
+
+DROP TABLESPACE tablespace_name INCLUDING DATAFILES;
+
+删除非空表空间，包含物理文件。
+
+DROP TABLESPACE tablespace_name INCLUDING CONTENTS AND DATAFILES;
